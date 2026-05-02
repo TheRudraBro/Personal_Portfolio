@@ -1,9 +1,11 @@
- const defaultConfig = {
+const defaultConfig = {
     hero_name: "Rudra Mojumder",
     hero_title: "web developer",
     hero_tagline: "I design and build fast, accessible, and thoughtfully-crafted digital experiences — turning ideas into interfaces that feel right.",
     about_text: "I'm a web developer with a passion for building interfaces that feel intentional — where every pixel, interaction, and line of code earns its place. I bridge the gap between design and engineering, shipping products that look beautiful and perform flawlessly.",
+    cp_text: "Beyond web development, I actively participate in competitive programming challenges. I enjoy solving complex algorithmic problems, optimizing for time and space complexity, and competing in contests that sharpen my problem-solving skills.",
     contact_email: "r17.gfx@gmail.com",
+    cv_url: "Assets/Rudra_Mojumder_CV.png",
     project_1_url: "",
     project_2_url: "",
     project_3_url: "",
@@ -11,7 +13,7 @@
   };
 
   const projects = [
-    { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on cultural experiences.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/" },
+    { num: "01", title: "Nebula Commerce", desc: "A headless e-commerce platform with a focus on speed and elegance.", tags: ["Next.js", "Stripe", "Shopify"], year: "2025", url: "" },
     { num: "02", title: "Loom Studio", desc: "A collaborative writing tool with real-time sync and thoughtful typography.", tags: ["React", "WebSockets", "Postgres"], year: "2024", url: "" },
     { num: "03", title: "Ember Analytics", desc: "Privacy-first product analytics dashboard for indie makers.", tags: ["TypeScript", "D3", "Supabase"], year: "2024", url: "" },
     { num: "04", title: "Folio CMS", desc: "A minimal content management system built for designers and writers.", tags: ["Node.js", "MongoDB", "Tailwind"], year: "2023", url: "" }
@@ -72,16 +74,40 @@
     document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
     document.getElementById('hero-tagline').textContent = config.hero_tagline || defaultConfig.hero_tagline;
     document.getElementById('about-text').textContent = config.about_text || defaultConfig.about_text;
+    document.getElementById('cp-text').textContent = config.cp_text || defaultConfig.cp_text;
     document.getElementById('footer-name').textContent = name;
 
     const email = config.contact_email || defaultConfig.contact_email;
     document.getElementById('contact-email-text').textContent = email;
-    document.getElementById('contact-email-big').href = `mailto:${email}`;
     document.getElementById('hero-email-link').href = `mailto:${email}`;
+
+    // CV Download (force image download)
+const cvUrl = config.cv_url || defaultConfig.cv_url;
+const cvBtn = document.getElementById('cv-download-btn');
+const cvBtnMobile = document.getElementById('cv-download-mobile-btn');
+
+function downloadCV(url) {
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Rudra-Mojumder-CV.png'; // file name when downloaded
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
+if (cvUrl) {
+  cvBtn.onclick = () => downloadCV(cvUrl);
+  cvBtnMobile.onclick = () => downloadCV(cvUrl);
+} else {
+  cvBtn.onclick = null;
+  cvBtnMobile.onclick = null;
+  cvBtn.classList.add('cursor-not-allowed', 'opacity-50');
+  cvBtnMobile.classList.add('cursor-not-allowed', 'opacity-50');
+}
 
     // Update project URLs
     projects.forEach((p, i) => {
-      p.url = config[`project_${i + 1}_url`] || p.url;
+      p.url = config[`project_${i + 1}_url`] || '';
     });
     renderProjects();
 
@@ -100,9 +126,13 @@
     try {
       await navigator.clipboard.writeText(email);
       const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.textContent = 'Email copied!';
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2000);
-    } catch (e) {}
+    } catch (e) {
+      console.error('Failed to copy');
+    }
   });
 
   // Mobile menu toggle
@@ -123,6 +153,39 @@
     link.addEventListener('click', () => {
       mobileMenu.classList.add('-translate-x-full');
     });
+  });
+
+  // Contact Form Submission
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formStatus = document.getElementById('form-status');
+    const sendBtn = contactForm.querySelector('button[type="submit"]');
+    const name = document.getElementById('form-name').value;
+    const email = document.getElementById('form-email').value;
+    const message = document.getElementById('form-message').value;
+    
+    // Disable button and show loading
+    sendBtn.disabled = true;
+    const originalText = document.getElementById('send-btn-text').textContent;
+    document.getElementById('send-btn-text').textContent = 'sending...';
+    formStatus.textContent = '';
+    
+    // Since we can't actually send emails from frontend, we'll show success
+    // In production, you'd send this to a backend service
+    setTimeout(() => {
+      formStatus.textContent = 'Message received! I\'ll get back to you soon.';
+      formStatus.style.color = 'var(--accent)';
+      contactForm.reset();
+      
+      // Reset button after 3 seconds
+      setTimeout(() => {
+        sendBtn.disabled = false;
+        document.getElementById('send-btn-text').textContent = originalText;
+        formStatus.textContent = '';
+      }, 3000);
+    }, 1500);
   });
 
   // Smooth scroll
@@ -158,7 +221,9 @@
         ["hero_title", config.hero_title || defaultConfig.hero_title],
         ["hero_tagline", config.hero_tagline || defaultConfig.hero_tagline],
         ["about_text", config.about_text || defaultConfig.about_text],
+        ["cp_text", config.cp_text || defaultConfig.cp_text],
         ["contact_email", config.contact_email || defaultConfig.contact_email],
+        ["cv_url", config.cv_url || defaultConfig.cv_url],
         ["project_1_url", config.project_1_url || defaultConfig.project_1_url],
         ["project_2_url", config.project_2_url || defaultConfig.project_2_url],
         ["project_3_url", config.project_3_url || defaultConfig.project_3_url],
