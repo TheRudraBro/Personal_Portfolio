@@ -6,17 +6,17 @@ const defaultConfig = {
     cp_text: "Beyond web development, I actively participate in competitive programming challenges. I enjoy solving complex algorithmic problems, optimizing for time and space complexity, and competing in contests that sharpen my problem-solving skills.",
     contact_email: "r17.gfx@gmail.com",
     cv_url: "Assets/Rudra_Mojumder_CV.png",
-    project_1_url: "",
-    project_2_url: "",
-    project_3_url: "",
-    project_4_url: ""
+    project_1_url: "https://tourism-bangladesh.netlify.app/",
+    project_2_url: "https://tourism-bangladesh.netlify.app/",
+    project_3_url: "https://tourism-bangladesh.netlify.app/",
+    project_4_url: "https://tourism-bangladesh.netlify.app/"
   };
 
   const projects = [
-    { num: "01", title: "Nebula Commerce", desc: "A headless e-commerce platform with a focus on speed and elegance.", tags: ["Next.js", "Stripe", "Shopify"], year: "2025", url: "" },
-    { num: "02", title: "Loom Studio", desc: "A collaborative writing tool with real-time sync and thoughtful typography.", tags: ["React", "WebSockets", "Postgres"], year: "2024", url: "" },
-    { num: "03", title: "Ember Analytics", desc: "Privacy-first product analytics dashboard for indie makers.", tags: ["TypeScript", "D3", "Supabase"], year: "2024", url: "" },
-    { num: "04", title: "Folio CMS", desc: "A minimal content management system built for designers and writers.", tags: ["Node.js", "MongoDB", "Tailwind"], year: "2023", url: "" }
+    { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/" },
+    { num: "02", title: "Loom Studio", desc: "A collaborative writing tool with real-time sync and thoughtful typography.", tags: ["React", "WebSockets", "Postgres"], year: "2024", url: "https://tourism-bangladesh.netlify.app/" },
+    { num: "03", title: "Ember Analytics", desc: "Privacy-first product analytics dashboard for indie makers.", tags: ["TypeScript", "D3", "Supabase"], year: "2024", url: "https://tourism-bangladesh.netlify.app/" },
+    { num: "04", title: "Folio CMS", desc: "A minimal content management system built for designers and writers.", tags: ["Node.js", "MongoDB", "Tailwind"], year: "2023", url: "https://tourism-bangladesh.netlify.app/" }
   ];
 
   const skills = [
