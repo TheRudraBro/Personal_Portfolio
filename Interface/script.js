@@ -6,6 +6,10 @@ const defaultConfig = {
     cp_text: "Beyond web development, I actively participate in competitive programming challenges. I enjoy solving complex algorithmic problems, optimizing for time and space complexity, and competing in contests that sharpen my problem-solving skills.",
     contact_email: "r17.gfx@gmail.com",
     cv_url: "Assets/Rudra_Mojumder_CV.png",
+    codeForces_url: "https://leetcode.com/u/TheRudraBro/",
+    leetCode_url: "https://leetcode.com/u/TheRudraBro/",
+    hackerRank_url: "https://leetcode.com/u/TheRudraBro/",
+    codeChef_url: "https://leetcode.com/u/TheRudraBro/",
     project_1_url: "https://tourism-bangladesh.netlify.app/",
     project_2_url: "https://english-vocabularies-learning-janala.netlify.app/",
     project_3_url: "https://payooo-mobile-bank-project.netlify.app/",
@@ -13,7 +17,7 @@ const defaultConfig = {
   };
 
   const projects = [
-    { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/" },
+    { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/", image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=400&fit=crop" },
     { num: "02", title: "English Janala", desc: "An interactive platform for learning English vocabulary through engaging exercises.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://english-vocabularies-learning-janala.netlify.app/" },
     { num: "03", title: "Mobile Banking", desc: "A secure and user-friendly mobile banking application.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://payooo-mobile-bank-project.netlify.app/" },
     { num: "04", title: "Emergency Services BD", desc: "A platform for connecting users with emergency services in Bangladesh.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://emergency-services-bd.netlify.app/" }
