@@ -7,16 +7,16 @@ const defaultConfig = {
     contact_email: "r17.gfx@gmail.com",
     cv_url: "Assets/Rudra_Mojumder_CV.png",
     project_1_url: "https://tourism-bangladesh.netlify.app/",
-    project_2_url: "https://tourism-bangladesh.netlify.app/",
-    project_3_url: "https://tourism-bangladesh.netlify.app/",
-    project_4_url: "https://tourism-bangladesh.netlify.app/"
+    project_2_url: "https://english-vocabularies-learning-janala.netlify.app/",
+    project_3_url: "https://payooo-mobile-bank-project.netlify.app/",
+    project_4_url: "https://emergency-services-bd.netlify.app/"
   };
 
   const projects = [
     { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/" },
-    { num: "02", title: "Loom Studio", desc: "A collaborative writing tool with real-time sync and thoughtful typography.", tags: ["React", "WebSockets", "Postgres"], year: "2024", url: "https://tourism-bangladesh.netlify.app/" },
-    { num: "03", title: "Ember Analytics", desc: "Privacy-first product analytics dashboard for indie makers.", tags: ["TypeScript", "D3", "Supabase"], year: "2024", url: "https://tourism-bangladesh.netlify.app/" },
-    { num: "04", title: "Folio CMS", desc: "A minimal content management system built for designers and writers.", tags: ["Node.js", "MongoDB", "Tailwind"], year: "2023", url: "https://tourism-bangladesh.netlify.app/" }
+    { num: "02", title: "English Janala", desc: "An interactive platform for learning English vocabulary through engaging exercises.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://english-vocabularies-learning-janala.netlify.app/" },
+    { num: "03", title: "Mobile Banking", desc: "A secure and user-friendly mobile banking application.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://payooo-mobile-bank-project.netlify.app/" },
+    { num: "04", title: "Emergency Services BD", desc: "A platform for connecting users with emergency services in Bangladesh.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://emergency-services-bd.netlify.app/" }
   ];
 
   const skills = [
