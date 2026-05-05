@@ -23,40 +23,67 @@ const defaultConfig = {
   };
 
   const projects = [
-    { num: "01", 
-      title: "Tourism Bangladesh", 
-      desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", 
-      tags: ["JavaScript", "MongoDB", "Firebase"], 
-      year: "2026", 
-      url: "https://tourism-bangladesh.netlify.app/", 
-      image:
-      "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200"},
-    { num: "02", 
-      title: "English Janala", 
-      desc: "An interactive platform for learning English vocabulary through engaging exercises.", 
-      tags: ["JavaScript", "HTML", "TailwindCSS"], 
-      year: "2025", 
-      url: "https://english-vocabularies-learning-janala.netlify.app/",
-       image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200"
-     },
-    { num: "03", 
-      title: "Mobile Banking", 
-      desc: "A secure and user-friendly mobile banking application.", 
-      tags: ["JavaScript", "HTML", "TailwindCSS"], 
-      year: "2025", 
-      url: "https://payooo-mobile-bank-project.netlify.app/",
-     image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200" },
-    { num: "04", 
-      title: "Emergency Services BD", 
-      desc: "A platform for connecting users with emergency services in Bangladesh.", 
-      tags: ["JavaScript", "HTML", "TailwindCSS"], 
-      year: "2025", 
-      url: "https://emergency-services-bd.netlify.app/",
-    image:
-      "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200"}
-  ];
+  {
+    num: "01",
+    title: "Tourism Bangladesh",
+    desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.",
+    tags: ["JavaScript", "MongoDB", "Firebase"],
+    year: "2026",
+    url: "https://tourism-bangladesh.netlify.app/",
+    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200",
+    type: "website"
+  },
+  {
+    num: "02",
+    title: "English Janala",
+    desc: "An interactive platform for learning English vocabulary through engaging exercises.",
+    tags: ["JavaScript", "HTML", "TailwindCSS"],
+    year: "2025",
+    url: "https://english-vocabularies-learning-janala.netlify.app/",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200",
+    type: "website"
+  },
+  {
+    num: "03",
+    title: "Mobile Banking",
+    desc: "A secure and user-friendly mobile banking application.",
+    tags: ["JavaScript", "HTML", "TailwindCSS"],
+    year: "2025",
+    url: "https://payooo-mobile-bank-project.netlify.app/",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200",
+    type: "website"
+  },
+  {
+    num: "04",
+    title: "Emergency Services BD",
+    desc: "A platform for connecting users with emergency services in Bangladesh.",
+    tags: ["JavaScript", "HTML", "TailwindCSS"],
+    year: "2025",
+    url: "https://emergency-services-bd.netlify.app/",
+    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    type: "website"
+  },
+    {
+    num: "05",
+    title: "Expense Tracker - Mobile App (Under Development)",
+    desc: "A web application for tracking personal expenses and managing budgets effectively.",
+    tags: ["JavaScript", "React native"],
+    year: "2025",
+    url: "https://emergency-services-bd.netlify.app/",
+    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    type: "app"
+  },
+  {
+    num: "06",
+    title: "Food Delivery - Mobile App (Under Development)",
+    desc: "A web application for tracking personal expenses and managing budgets effectively.",
+    tags: ["JavaScript", "React native"],
+    year: "2025",
+    url: "https://emergency-services-bd.netlify.app/",
+    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    type: "app"
+  }
+];
 
   const skills = [
     { name: "Frontend Development", level: 95, tag: "React / Next / Vue" },
@@ -67,68 +94,65 @@ const defaultConfig = {
     { name: "Performance & SEO", level: 85, tag: "Core Web Vitals" }
   ];
 
-  function renderProjects() {
-    const grid = document.getElementById('projects-grid');
+let previewMode = true;
+let activeFilter = "all";
+function renderProjects() {
+  const grid = document.getElementById("projects-grid");
 
-    grid.innerHTML = projects.map((p, i) => `
-      <a href="${p.url}" 
-      target='_blank' 
-      rel='noopener noreferrer' 
-      class="project-card noise-border bg-[var(--surface)] rounded-2xl overflow-hidden block group transition-all duration-500 hover:-translate-y-2"
-      style="animation-delay: ${0.1 * i}s">
+  let filtered = projects.filter(p => {
+    if (activeFilter === "all") return true;
+    return p.type === activeFilter;
+  });
 
-       <!-- IMAGE -->
-        <div class="overflow-hidden">
-          <img 
-            src="${p.image}" 
-            alt="${p.title}" 
-            class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
-          >
+  // 👉 NEW: preview mode logic
+  if (previewMode) {
+    filtered = filtered.slice(0, 4);
+  }
+
+  grid.innerHTML = filtered.map((p, i) => `
+    <a href="${p.url}" target="_blank"
+      class="project-card relative noise-border bg-[var(--surface)] rounded-2xl overflow-hidden block group hover:-translate-y-2"
+      style="opacity:0; transform:translateY(20px);">
+
+      <div class="overflow-hidden">
+        <img src="${p.image}"
+          class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700">
+      </div>
+
+      <div class="p-8 md:p-10">
+
+        <div class="flex justify-between mb-10">
+          <span class="font-mono text-xs text-neutral-500">
+            ${p.num} — ${p.year}
+          </span>
+
+          <div class="w-10 h-10 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-all">
+            <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:text-black"></i>
+          </div>
         </div>
 
-             <!-- CONTENT -->
-        <div class="p-8 md:p-10">
+        <h3 class="font-display text-3xl mb-3 group-hover:text-[var(--accent)] transition-colors">
+          ${p.title}
+        </h3>
 
-          <div class="flex items-start justify-between mb-10">
-            
-            <span class="font-mono text-xs text-neutral-500">
-              ${p.num} — ${p.year}
+        <p class="text-neutral-400 text-sm mb-6">
+          ${p.desc}
+        </p>
+
+        <div class="flex flex-wrap gap-2">
+          ${p.tags.map(t => `
+            <span class="font-mono text-xs px-3 py-1 rounded-full border border-neutral-800 text-neutral-400">
+              ${t}
             </span>
-
-            <div class="arrow-btn w-10 h-10 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-all">
-              <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-300 group-hover:text-black"></i>
-            </div>
-
-          </div>
-
-          <h3 class="font-display font-light text-3xl md:text-4xl tracking-tight mb-3 group-hover:text-[var(--accent)] transition-colors">
-            ${p.title}
-          </h3>
-
-          <p class="text-neutral-400 text-sm md:text-base mb-6 leading-relaxed">
-            ${p.desc}
-          </p>
-
-          <div class="flex flex-wrap gap-2">
-            ${p.tags
-              .map(
-                (t) => `
-              <span class="font-mono text-xs px-3 py-1 rounded-full border border-neutral-800 text-neutral-400">
-                ${t}
-              </span>
-            `
-              )
-              .join("")}
-          </div>
-
+          `).join("")}
         </div>
 
-      </a>
-    `
-    )
-    .join("");
+      </div>
+    </a>
+  `).join("");
 
   lucide.createIcons();
+  animateCards();
 }
 
   function renderSkills() {
@@ -316,3 +340,73 @@ if (cvUrl) {
       ])
     });
   }
+
+
+ function setActiveButton(activeId) {
+  const buttons = document.querySelectorAll(".filter-btn");
+
+  buttons.forEach(btn => {
+    btn.classList.remove(
+      "border-[var(--accent)]",
+      "text-[var(--accent)]"
+    );
+
+    btn.classList.add(
+      "border-neutral-700",
+      "text-neutral-400"
+    );
+  });
+
+  const activeBtn = document.getElementById(activeId);
+
+  activeBtn.classList.remove(
+    "border-neutral-700",
+    "text-neutral-400"
+  );
+
+  activeBtn.classList.add(
+    "border-[var(--accent)]",
+    "text-[var(--accent)]"
+  );
+}
+function animateCards() {
+  const cards = document.querySelectorAll(".project-card");
+
+  cards.forEach((card, i) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px) scale(0.98)";
+
+    setTimeout(() => {
+      card.style.transition = "all 0.5s ease";
+      card.style.opacity = "1";
+      card.style.transform = "translateY(0) scale(1)";
+    }, i * 80);
+  });
+}
+
+document.getElementById("filter-all").addEventListener("click", () => {
+  previewMode = false;
+  activeFilter = "all";
+  setActiveButton("filter-all");
+  renderProjects();
+});
+
+document.getElementById("filter-website").addEventListener("click", () => {
+  previewMode = false;
+  activeFilter = "website";
+  setActiveButton("filter-website");
+  renderProjects();
+});
+
+document.getElementById("filter-app").addEventListener("click", () => {
+  previewMode = false;
+  activeFilter = "app";
+  setActiveButton("filter-app");
+  renderProjects();
+});
+
+window.addEventListener("load", () => {
+  previewMode = true;
+  activeFilter = "all";
+  renderProjects();
+});

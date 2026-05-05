@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Portfolio Work Section</title>
+
+<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #161616;
+  --text: #ededed;
+  --accent: #d4ff3a;
+  --muted: #6b6b6b;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+/* SECTION */
+section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 80px 20px;
+}
+
+/* FILTER BUTTONS */
+.filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #333;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.filter-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.project-card {
+  background: var(--surface);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: 0.4s;
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+.project-card:hover img {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.arrow {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+.project-card:hover .arrow {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* ANIMATION */
+.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: 0.5s ease;
+}
+</style>
+</head>
+
+<body>
+
+<section>
+
+  <h2 style="margin-bottom:20px;">Selected Work</h2>
+
+  <!-- FILTER -->
+  <div class="filters">
+    <button class="filter-btn active" id="allBtn">All</button>
+    <button class="filter-btn" id="webBtn">Website</button>
+    <button class="filter-btn" id="appBtn">App</button>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid" id="grid"></div>
+
+</section>
+
+<script>
+const projects = [
+  {title:"Tourism Bangladesh", type:"website", img:"https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=800", year:"2026"},
+  {title:"English Janala", type:"website", img:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800", year:"2025"},
+  {title:"Mobile Banking", type:"website", img:"https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800", year:"2025"},
+  {title:"Emergency BD", type:"website", img:"https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=800", year:"2025"},
+  {title:"Expense App", type:"app", img:"https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800", year:"2025"},
+  {title:"Food App", type:"app", img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800", year:"2025"},
+];
+
+let state = "initial";
+
+const grid = document.getElementById("grid");
+
+function render() {
+  let data = projects;
+
+  // FIRST VISIT → only 4
+  if (state === "initial") {
+    data = projects.slice(0, 4);
+  }
+
+  if (state === "website") {
+    data = projects.filter(p => p.type === "website");
+  }
+
+  if (state === "app") {
+    data = projects.filter(p => p.type === "app");
+  }
+
+  grid.innerHTML = data.map((p,i)=>`
+    <a href="#" class="project-card">
+      <img src="${p.img}" />
+      <div class="card-body">
+        <div class="top">
+          <span>${p.year}</span>
+          <div class="arrow"><i data-lucide="arrow-up-right"></i></div>
+        </div>
+        <h3>${p.title}</h3>
+      </div>
+    </a>
+  `).join("");
+
+  lucide.createIcons();
+
+  setTimeout(()=>{
+    document.querySelectorAll(".project-card").forEach((c,i)=>{
+      setTimeout(()=>c.classList.add("show"), i*80);
+    });
+  },50);
+}
+
+/* ACTIVE BUTTON */
+function setActive(btn){
+  document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+/* EVENTS */
+document.getElementById("allBtn").onclick=()=>{
+  state="all";
+  setActive(document.getElementById("allBtn"));
+  render();
+};
+
+document.getElementById("webBtn").onclick=()=>{
+  state="website";
+  setActive(document.getElementById("webBtn"));
+  render();
+};
+
+document.getElementById("appBtn").onclick=()=>{
+  state="app";
+  setActive(document.getElementById("appBtn"));
+  render();
+};
+
+/* FIRST LOAD */
+render();
+
+</script>
+
+</body>
+</html>
