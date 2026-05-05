@@ -90,11 +90,15 @@
   .skill-bar-fill { animation: grow-bar 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
   /* Link underline */
-  .hover-link {
+
+  .nav-link.active {
+  color: var(--accent);
+}
+  .nav-link {
     position: relative;
     display: inline-block;
   }
-  .hover-link::after {
+  .nav-link::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -104,7 +108,7 @@
     background: currentColor;
     transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .hover-link:hover::after { width: 100%; }
+  .nav-link:hover::after { width: 100%; }
 
   /* Cursor blink */
   @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
