@@ -1,15 +1,21 @@
 const defaultConfig = {
     hero_name: "Rudra Mojumder",
     hero_title: "web developer",
-    hero_tagline: "I design and build fast, accessible, and thoughtfully-crafted digital experiences — turning ideas into interfaces that feel right.",
-    about_text: "I'm a web developer with a passion for building interfaces that feel intentional — where every pixel, interaction, and line of code earns its place. I bridge the gap between design and engineering, shipping products that look beautiful and perform flawlessly.",
-    cp_text: "Beyond web development, I actively participate in competitive programming challenges. I enjoy solving complex algorithmic problems, optimizing for time and space complexity, and competing in contests that sharpen my problem-solving skills.",
-    contact_email: "r17.gfx@gmail.com",
-    cv_url: "Assets/Rudra_Mojumder_CV.png",
+    hero_tagline: 
+    "I design and build fast, accessible, and thoughtfully-crafted digital experiences — turning ideas into interfaces that feel right.",
+    about_text: 
+    "I'm a web developer with a passion for building interfaces that feel intentional — where every pixel, interaction, and line of code earns its place. I bridge the gap between design and engineering, shipping products that look beautiful and perform flawlessly.",
+    cp_text: 
+    "Beyond web development, I actively participate in competitive programming challenges. I enjoy solving complex algorithmic problems, optimizing for time and space complexity, and competing in contests that sharpen my problem-solving skills.",
+    contact_email: 
+    "r17.gfx@gmail.com",
+    cv_url: 
+    "Assets/Rudra_Mojumder_CV.png",
     codeForces_url: "https://leetcode.com/u/TheRudraBro/",
     leetCode_url: "https://leetcode.com/u/TheRudraBro/",
     hackerRank_url: "https://leetcode.com/u/TheRudraBro/",
     codeChef_url: "https://leetcode.com/u/TheRudraBro/",
+
     project_1_url: "https://tourism-bangladesh.netlify.app/",
     project_2_url: "https://english-vocabularies-learning-janala.netlify.app/",
     project_3_url: "https://payooo-mobile-bank-project.netlify.app/",
@@ -17,10 +23,39 @@ const defaultConfig = {
   };
 
   const projects = [
-    { num: "01", title: "Tourism Bangladesh", desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", tags: ["JavaScript", "MongoDB", "Firebase"], year: "2026", url: "https://tourism-bangladesh.netlify.app/", image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=600&h=400&fit=crop" },
-    { num: "02", title: "English Janala", desc: "An interactive platform for learning English vocabulary through engaging exercises.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://english-vocabularies-learning-janala.netlify.app/" },
-    { num: "03", title: "Mobile Banking", desc: "A secure and user-friendly mobile banking application.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://payooo-mobile-bank-project.netlify.app/" },
-    { num: "04", title: "Emergency Services BD", desc: "A platform for connecting users with emergency services in Bangladesh.", tags: ["JavaScript", "HTML", "TailwindCSS"], year: "2025", url: "https://emergency-services-bd.netlify.app/" }
+    { num: "01", 
+      title: "Tourism Bangladesh", 
+      desc: "A platform for promoting tourism in Bangladesh with a focus on user experience and accessibility.", 
+      tags: ["JavaScript", "MongoDB", "Firebase"], 
+      year: "2026", 
+      url: "https://tourism-bangladesh.netlify.app/", 
+      image:
+      "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200"},
+    { num: "02", 
+      title: "English Janala", 
+      desc: "An interactive platform for learning English vocabulary through engaging exercises.", 
+      tags: ["JavaScript", "HTML", "TailwindCSS"], 
+      year: "2025", 
+      url: "https://english-vocabularies-learning-janala.netlify.app/",
+       image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200"
+     },
+    { num: "03", 
+      title: "Mobile Banking", 
+      desc: "A secure and user-friendly mobile banking application.", 
+      tags: ["JavaScript", "HTML", "TailwindCSS"], 
+      year: "2025", 
+      url: "https://payooo-mobile-bank-project.netlify.app/",
+     image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200" },
+    { num: "04", 
+      title: "Emergency Services BD", 
+      desc: "A platform for connecting users with emergency services in Bangladesh.", 
+      tags: ["JavaScript", "HTML", "TailwindCSS"], 
+      year: "2025", 
+      url: "https://emergency-services-bd.netlify.app/",
+    image:
+      "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200"}
   ];
 
   const skills = [
@@ -34,25 +69,71 @@ const defaultConfig = {
 
   function renderProjects() {
     const grid = document.getElementById('projects-grid');
+
     grid.innerHTML = projects.map((p, i) => `
-      <a href="${p.url}" target="${p.url ? '_blank' : ''}" rel="${p.url ? 'noopener noreferrer' : ''}" onclick="${p.url ? 'return true' : 'return false;'}" class="project-card noise-border bg-[var(--surface)] rounded-2xl p-8 md:p-10 block group" style="animation-delay: ${0.1 * i}s">
-        <div class="flex items-start justify-between mb-16">
-          <span class="font-mono text-xs text-neutral-500">${p.num} — ${p.year}</span>
-          <div class="arrow-btn w-10 h-10 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-all">
-            <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-300 group-hover:text-black"></i>
+      <a href="${p.url}" 
+      target='_blank' 
+      rel='noopener noreferrer' 
+      class="project-card noise-border bg-[var(--surface)] rounded-2xl overflow-hidden block group transition-all duration-500 hover:-translate-y-2"
+      style="animation-delay: ${0.1 * i}s">
+
+       <!-- IMAGE -->
+        <div class="overflow-hidden">
+          <img 
+            src="${p.image}" 
+            alt="${p.title}" 
+            class="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+          >
+        </div>
+
+             <!-- CONTENT -->
+        <div class="p-8 md:p-10">
+
+          <div class="flex items-start justify-between mb-10">
+            
+            <span class="font-mono text-xs text-neutral-500">
+              ${p.num} — ${p.year}
+            </span>
+
+            <div class="arrow-btn w-10 h-10 rounded-full border border-neutral-700 flex items-center justify-center group-hover:bg-[var(--accent)] group-hover:border-[var(--accent)] transition-all">
+              <i data-lucide="arrow-up-right" class="w-4 h-4 text-neutral-300 group-hover:text-black"></i>
+            </div>
+
           </div>
+
+          <h3 class="font-display font-light text-3xl md:text-4xl tracking-tight mb-3 group-hover:text-[var(--accent)] transition-colors">
+            ${p.title}
+          </h3>
+
+          <p class="text-neutral-400 text-sm md:text-base mb-6 leading-relaxed">
+            ${p.desc}
+          </p>
+
+          <div class="flex flex-wrap gap-2">
+            ${p.tags
+              .map(
+                (t) => `
+              <span class="font-mono text-xs px-3 py-1 rounded-full border border-neutral-800 text-neutral-400">
+                ${t}
+              </span>
+            `
+              )
+              .join("")}
+          </div>
+
         </div>
-        <h3 class="font-display font-light text-3xl md:text-4xl tracking-tight mb-3 group-hover:text-[var(--accent)] transition-colors">${p.title}</h3>
-        <p class="text-neutral-400 text-sm md:text-base mb-6 leading-relaxed">${p.desc}</p>
-        <div class="flex flex-wrap gap-2">
-          ${p.tags.map(t => `<span class="font-mono text-xs px-3 py-1 rounded-full border border-neutral-800 text-neutral-400">${t}</span>`).join('')}
-        </div>
+
       </a>
-    `).join('');
-  }
+    `
+    )
+    .join("");
+
+  lucide.createIcons();
+}
 
   function renderSkills() {
     const grid = document.getElementById('skills-grid');
+
     grid.innerHTML = skills.map((s, i) => `
       <div class="py-4 border-b border-neutral-900">
         <div class="flex items-baseline justify-between mb-2">
