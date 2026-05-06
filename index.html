@@ -83,44 +83,92 @@
 
    <main class="relative z-10 pt-24" id="top">
     <!-- HERO -->
-    <header class="px-6 md:px-12 pt-16 md:pt-24 pb-24 max-w-[1400px] mx-auto">
-     <div class="reveal" style="animation-delay: 0.1s">
-      <p class="font-mono text-xs text-neutral-500 mb-8 tracking-widest uppercase">
-        <span class="text-[var(--accent)]">01</span> / Portfolio — 2026</p>
-     </div>
+  <header class="px-6 md:px-12 pt-6 md:pt-10 pb-16 md:pb-20 max-w-[1600px] mx-auto">
 
-     <h1 class="font-display font-light tracking-tight leading-[0.95] text-5xl md:text-7xl lg:text-8xl mb-8">
-        <span class="block reveal" style="animation-delay: 0.2s">Hi, I'm 
-            <em id="hero-name" class="italic text-[var(--accent)]">Rudra</em>.</span> 
-            <span class="block reveal text-neutral-400" style="animation-delay: 0.35s">A 
-                <span id="hero-title">web developer</span></span> 
-                <span class="block reveal" style="animation-delay: 0.5s">crafting the web
-                    <span class="cursor-blink text-[var(--accent)]">_</span></span>
-                </h1>
+  <!-- Portfolio label -->
+  <div class="reveal" style="animation-delay: 0.1s">
+    <p class="font-mono text-xs text-neutral-500 mb-10 tracking-widest uppercase leading-none">
+      <span class="text-[var(--accent)]">01</span> / Portfolio — 2026
+    </p>
+  </div>
 
-                
-     <div class="reveal grid md:grid-cols-3 gap-8 mt-16 max-w-3xl" style="animation-delay: 0.7s">
-      <p id="hero-tagline" class="md:col-span-2 text-neutral-400 text-base md:text-lg leading-relaxed">
-        I design and build fast, accessible, and thoughtfully-crafted digital experiences
-         — turning ideas into interfaces that feel right.</p>
+  <!-- HERO SECTION -->
+  <div class="flex flex-col md:flex-row items-center justify-between gap-12">
 
-      <div class="flex flex-col gap-3 text-sm font-mono">
-       <a href="#work" class="group flex items-center justify-between border-b border-neutral-800 pb-2 
-       hover:border-[var(--accent)] transition"> 
-       <span>see my work</span> 
-       <i data-lucide="arrow-down-right" class="w-4 h-4 group-hover:translate-x-1 
-       group-hover:-translate-y-1 transition"></i> </a> 
-       <a id="hero-email-link" href="mailto:r17.gfx@gmail.com" 
-       class="group flex items-center justify-between border-b border-neutral-800 pb-2 
-       hover:border-[var(--accent)] transition"> <span>get in touch</span> 
-       <i data-lucide="arrow-up-right" class="w-4 h-4 group-hover:translate-x-1 
-       group-hover:-translate-y-1 transition"></i> </a>
+    <!-- LEFT TEXT -->
+    <div>
+
+      <!-- MAIN TITLE -->
+      <h1 class="font-display font-light tracking-tight leading-[0.95]
+        text-5xl md:text-7xl lg:text-8xl mb-4 md:mb-6">
+
+        <span class="block reveal" style="animation-delay: 0.2s">
+          Hi, I'm
+          <em id="hero-name" class="italic text-[var(--accent)]">Rudra</em>.
+        </span>
+
+        <span class="block reveal text-neutral-400" style="animation-delay: 0.35s">
+          A <span id="hero-title">web developer</span>
+        </span>
+
+        <span class="block reveal" style="animation-delay: 0.5s">
+          crafting the web
+          <span class="cursor-blink text-[var(--accent)]">_</span>
+        </span>
+
+      </h1>
+
+      <!-- TAGLINE + LINKS -->
+      <div class="reveal grid md:grid-cols-3 gap-8 mt-8 md:mt-10 max-w-3xl"
+        style="animation-delay: 0.7s">
+
+        <p id="hero-tagline"
+          class="md:col-span-2 text-neutral-400 text-base md:text-lg leading-relaxed">
+          I design and build fast, accessible, and thoughtfully-crafted digital experiences
+          — turning ideas into interfaces that feel right.
+        </p>
+
+        <div class="flex flex-col gap-3 text-sm font-mono">
+
+          <a href="#work"
+            class="group flex items-center justify-between border-b border-neutral-800 pb-2
+            hover:border-[var(--accent)] transition">
+
+            <span>see my work</span>
+            <i data-lucide="arrow-down-right"
+              class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+
+          </a>
+
+          <a id="hero-email-link" href="mailto:r17.gfx@gmail.com"
+            class="group flex items-center justify-between border-b border-neutral-800 pb-2
+            hover:border-[var(--accent)] transition">
+
+            <span>get in touch</span>
+            <i data-lucide="arrow-up-right"
+              class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition"></i>
+
+          </a>
+
+        </div>
       </div>
-     </div>
+    </div>
 
+    <!-- RIGHT IMAGE (desktop only) -->
+    <div class="hidden md:block ml-auto">
 
-    </header>
+      <img src="Assets/hero-image.png" alt="Hero Image"
+        class="w-full max-w-3xl lg:max-w-4xl opacity-0 reveal
+        hover:scale-[1.02] transition duration-500"
+        style="animation-delay: 0.9s">
+
+    </div>
+
+  </div>
+
+</header>
     
+ 
 
     <!-- Tech Stack Carousel -->
     <section class="border-y border-neutral-900 py-8 overflow-hidden bg-[var(--surface)]">
@@ -556,7 +604,25 @@
      </div>
     </section>
     
-    
+    <!-- Research / Thesis Paper Section -->
+     <section>
+      <div class="px-6 md:px-12 py-24 md:py-32 max-w-[1400px] mx-auto border-t border-neutral-900">
+       <div class="mb-16">
+        <p class="font-mono text-xs text-neutral-500 mb-3 tracking-widest uppercase">
+         <span class="text-[var(--accent)]">08</span> / Research &amp; Publications</p>
+        <h2 id="section-title" class="font-display font-light text-5xl md:text-6xl mb-3 tracking-tight"><span style="color: var(--accent)">Research</span> &amp; Publications</h2>
+        <p class="text-neutral-500 text-sm font-mono tracking-wider">Academic Research &amp; Published Works</p>
+       </div>
+       <div class="space-y-8">
+        <!-- Research Paper 1 -->
+        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6">
+         <h3 class="text-lg font-semibold text-[var(--accent)] font-display">Optimizing Web Performance with Next.js: A Case Study</h3>
+         <p class="text-neutral-400 text-xs sm:text-sm font-mono mb-2">Published in the Journal of Web Development Research, 2024</p>
+         <p class="text-neutral-300 text-sm">This paper explores techniques for optimizing web performance using Next.js, including server-side rendering, static site generation, and image optimization strategies.</p>
+        </div>
+       </div>
+      </div>
+     </section>
     
     
     <!-- CONTACT -->
