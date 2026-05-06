@@ -1,350 +1,156 @@
-<!doctype html>
-<html lang="en" class="h-full">
- <head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
+  <title>Projects Section</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education &amp; Experience Timeline</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&amp;family=Fraunces:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.min.js"></script>
+
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #161616;
-      --text: #ededed;
       --accent: #d4ff3a;
-      --muted: #6b6b6b;
+      --surface: #111;
     }
 
-    html, body { height: 100%; width: 100%; }
-    
     body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'JetBrains Mono', monospace;
-      overflow-x: hidden;
+      background: #0a0a0a;
+      color: white;
+      font-family: sans-serif;
     }
 
-    .font-display { font-family: 'Fraunces', serif; }
-    .font-mono { font-family: 'JetBrains Mono', monospace; }
-
-    /* Grain texture */
-    .grain::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.04;
-      z-index: 50;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    .project-card {
+      transition: all 0.4s ease;
     }
 
-    /* Animations */
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+    .project-card:hover {
+      transform: translateY(-8px);
     }
-
-    @keyframes pulseGlow {
-      0%, 100% { box-shadow: 0 0 8px rgba(212, 255, 58, 0.4); }
-      50% { box-shadow: 0 0 20px rgba(212, 255, 58, 0.8); }
-    }
-
-    @keyframes lineGrow {
-      from { height: 0; }
-      to { height: 100%; }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
-    }
-
-    .timeline-item {
-      opacity: 0;
-      animation: fadeSlideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-
-    .timeline-item:nth-child(1) { animation-delay: 0.1s; }
-    .timeline-item:nth-child(2) { animation-delay: 0.2s; }
-    .timeline-item:nth-child(3) { animation-delay: 0.3s; }
-    .timeline-item:nth-child(4) { animation-delay: 0.4s; }
-    .timeline-item:nth-child(5) { animation-delay: 0.5s; }
-    .timeline-item:nth-child(6) { animation-delay: 0.6s; }
-    .timeline-item:nth-child(7) { animation-delay: 0.7s; }
-
-    .timeline-dot { animation: pulseGlow 2.5s ease-in-out infinite; }
-    .timeline-line { 
-      animation: lineGrow 1.5s ease forwards;
-      width: 2px !important;
-      background: linear-gradient(to bottom, rgba(212, 255, 58, 0.8), rgba(212, 255, 58, 0.2), transparent) !important;
-    }
-
-    .card-hover {
-      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .card-hover:hover {
-      transform: translateX(8px);
-      border-color: rgba(212, 255, 58, 0.5);
-      background: rgba(212, 255, 58, 0.02);
-    }
-
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212, 255, 58, 0.3), transparent);
-      margin: 2rem 0;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.75rem;
-      background: rgba(212, 255, 58, 0.08);
-      color: var(--accent);
-      padding: 0.4rem 0.8rem;
-      border-radius: 9999px;
-      border: 1px solid rgba(212, 255, 58, 0.2);
-      font-weight: 500;
-    }
-
-    .achievement-icon {
-      width: 16px;
-      height: 16px;
-      color: var(--accent);
-    }
-
-    #app { box-sizing: border-box; }
   </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full grain">
-  <div id="app" class="min-h-screen w-full overflow-y-auto bg-[var(--bg)] text-[var(--text)] flex justify-center p-6 md:p-8">
-   <section class="w-full max-w-3xl">
-    <!-- Header -->
-    <div class="mb-16">
-     <h2 id="section-title" class="font-display font-light text-5xl md:text-6xl mb-3 tracking-tight"><span style="color: var(--accent)">Education</span> &amp; Experience</h2>
-     <p class="text-neutral-500 text-sm font-mono tracking-wider">Academic Journey &amp; Professional Growth</p>
-    </div>
-    <!-- Education Section -->
-    <div class="mb-12">
-     <h3 class="font-display font-light text-2xl mb-8 flex items-center gap-3"><i data-lucide="graduation-cap" style="width: 24px; height: 24px; color: var(--accent);"></i> Education</h3>
-     <div class="space-y-8"><!-- SSC -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] flex-1 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">SSC</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Secondary School Certificate</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2020</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Rashidia High School</p>
-        </div>
-       </div>
-      </div><!-- HSC -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] h-24 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">HSC</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Higher Secondary Certificate</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2022</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">NPC (National Polytechnic College)</p>
-        </div>
-       </div>
-      </div><!-- BSc -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">BSc in Computer Science &amp; Engineering</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Bangladesh University of Business &amp; Technology (BUBT)</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2023–2027</span>
-         </div>
-         <div class="mt-3 flex items-center gap-2"><span class="inline-block text-[10px] sm:text-[11px] uppercase tracking-wider bg-[var(--accent)]/15 text-[var(--accent)] px-2.5 py-1 rounded font-semibold border border-[var(--accent)]/20">Currently Enrolled</span>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div><!-- Section Divider -->
-    <div class="section-divider"></div><!-- Experience Section -->
-    <div>
-     <h3 class="font-display font-light text-2xl mb-8 flex items-center gap-3"><i data-lucide="award" style="width: 24px; height: 24px; color: var(--accent);"></i> Experience &amp; Achievements</h3>
-     <div class="space-y-8"><!-- ICPC 2023 Volunteer -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] h-24 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">ICPC Volunteer</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">ACM ICPC Regional Competition</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2023</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Volunteered for International Collegiate Programming Contest, assisting with event management and coordination.</p>
-        </div>
-       </div>
-      </div><!-- ICPC Participation 2024 -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] h-24 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">ICPC Participant</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Competitive Programming</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2024</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Competed in ICPC regional round, solving algorithmic problems under time constraints.</p>
-        </div>
-       </div>
-      </div><!-- ICPC 2025 Participant -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] h-24 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">ICPC Participant</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">International Collegiate Programming Contest</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2025</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Actively competing in ICPC 2025, strengthening algorithmic and coding skills.</p>
-         <div class="mt-3 flex items-center gap-2"><span class="inline-block text-[10px] sm:text-[11px] uppercase tracking-wider bg-[var(--accent)]/15 text-[var(--accent)] px-2.5 py-1 rounded font-semibold border border-[var(--accent)]/20">Ongoing</span>
-         </div>
-        </div>
-       </div>
-      </div><!-- BUBT CTF -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-         <div class="w-[2px] h-24 timeline-line" style="background: linear-gradient(to bottom, rgba(212, 255, 58, 0.6), rgba(212, 255, 58, 0.2));"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1 pb-8">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">BUBT CTF Competition</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Cybersecurity &amp; Capture The Flag</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2026</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Participating in Capture The Flag competition, solving security challenges and offensive/defensive tactics.</p>
-         <div class="mt-3 flex items-center gap-2"><span class="inline-block text-[10px] sm:text-[11px] uppercase tracking-wider bg-[var(--accent)]/15 text-[var(--accent)] px-2.5 py-1 rounded font-semibold border border-[var(--accent)]/20">Upcoming</span>
-         </div>
-        </div>
-       </div>
-      </div><!-- Robi BDapps Volunteer -->
-      <div class="timeline-item">
-       <div class="flex gap-4 sm:gap-6">
-        <div class="flex flex-col items-center flex-shrink-0">
-         <div class="timeline-dot w-4 h-4 rounded-full bg-[var(--accent)] border-2 border-[var(--bg)]"></div>
-        </div>
-        <div class="card-hover bg-[var(--surface)]/50 backdrop-blur-sm rounded-xl p-4 sm:p-6 flex-1">
-         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-2">
-          <div>
-           <h4 class="text-base sm:text-lg font-semibold text-[var(--accent)] font-display">Robi BDapps Volunteer</h4>
-           <p class="text-neutral-400 text-xs sm:text-sm font-mono">Developer Ecosystem &amp; Community</p>
-          </div><span class="badge whitespace-nowrap text-[10px] sm:text-xs">2025</span>
-         </div>
-         <p class="text-neutral-300 text-sm mt-3">Contributing to Robi's developer community, mentoring peers and fostering tech innovation in Bangladesh.</p>
-         <div class="mt-3 flex items-center gap-2"><span class="inline-block text-[10px] sm:text-[11px] uppercase tracking-wider bg-[var(--accent)]/15 text-[var(--accent)] px-2.5 py-1 rounded font-semibold border border-[var(--accent)]/20">Ongoing</span>
-         </div>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section>
+</head>
+
+<body>
+
+<section class="px-6 md:px-12 py-20 max-w-6xl mx-auto">
+
+  <!-- Title -->
+  <div class="mb-12">
+    <h2 class="text-4xl font-light">Things I've built</h2>
   </div>
-  <script>
-    lucide.createIcons();
 
-    const defaultConfig = {
-      section_title: 'Education & Experience',
-      primary_color: '#d4ff3a',
-      bg_color: '#0a0a0a',
-      surface_color: '#161616',
-      text_color: '#ededed',
-      muted_color: '#6b6b6b',
-      font_family: 'Fraunces',
-      font_size: 16
-    };
+  <!-- Filter -->
+  <div class="flex gap-3 mb-10 text-sm">
+    <button id="filter-all" class="filter-btn px-4 py-2 border border-gray-600 rounded-full">All</button>
+    <button id="filter-website" class="filter-btn px-4 py-2 border border-gray-600 rounded-full">Website</button>
+    <button id="filter-app" class="filter-btn px-4 py-2 border border-gray-600 rounded-full">App</button>
+  </div>
 
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => {
-        const c = { ...defaultConfig, ...config };
-        
-        document.getElementById('section-title').innerHTML = 
-          `<span style="color: ${c.primary_color}">Education</span> & Experience`;
-        
-        document.getElementById('app').style.setProperty('--accent', c.primary_color);
-        document.getElementById('app').style.setProperty('--bg', c.bg_color);
-        document.getElementById('app').style.setProperty('--surface', c.surface_color);
-        document.getElementById('app').style.setProperty('--text', c.text_color);
-        document.getElementById('app').style.setProperty('--muted', c.muted_color);
+  <!-- Projects -->
+  <div id="projects-grid" class="grid md:grid-cols-2 gap-6"></div>
 
-        document.querySelectorAll('.timeline-dot').forEach(el => { 
-          el.style.backgroundColor = c.primary_color; 
-        });
-        
-        document.querySelectorAll('.timeline-line').forEach(el => { 
-          el.style.borderImageSource = `linear-gradient(to bottom, ${c.primary_color}, transparent)`;
-        });
-      },
-      mapToCapabilities: (config) => {
-        const c = { ...defaultConfig, ...config };
-        return {
-          recolorables: [
-            { get: () => c.bg_color, set: v => { c.bg_color = v; window.elementSdk.setConfig({ bg_color: v }); }},
-            { get: () => c.surface_color, set: v => { c.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); }},
-            { get: () => c.text_color, set: v => { c.text_color = v; window.elementSdk.setConfig({ text_color: v }); }},
-            { get: () => c.primary_color, set: v => { c.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }},
-            { get: () => c.muted_color, set: v => { c.muted_color = v; window.elementSdk.setConfig({ muted_color: v }); }}
-          ],
-          borderables: [],
-          fontEditable: { get: () => c.font_family, set: v => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }},
-          fontSizeable: { get: () => c.font_size, set: v => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }}
-        };
-      },
-      mapToEditPanelValues: (config) => {
-        const c = { ...defaultConfig, ...config };
-        return new Map([
-          ['section_title', c.section_title]
-        ]);
-      }
-    });
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f7288163682fc55',t:'MTc3ODAxMzMyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</section>
+
+<script>
+const projects = [
+  {
+    title: "Tourism Bangladesh",
+    desc: "Tourism platform with booking system.",
+    tags: ["JavaScript", "Firebase"],
+    url: "https://tourism-bangladesh.netlify.app/",
+    github: "https://github.com/",
+    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200",
+    type: "website"
+  },
+  {
+    title: "English Janala",
+    desc: "Vocabulary learning platform.",
+    tags: ["HTML", "Tailwind"],
+    url: "https://english-vocabularies-learning-janala.netlify.app/",
+    github: "https://github.com/",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200",
+    type: "website"
+  },
+  {
+    title: "Expense Tracker App",
+    desc: "Track your daily expenses.",
+    tags: ["React Native"],
+    url: "#",
+    github: "https://github.com/",
+    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    type: "app"
+  }
+];
+
+let activeFilter = "all";
+
+function renderProjects() {
+  const grid = document.getElementById("projects-grid");
+
+  let filtered = projects.filter(p => {
+    if (activeFilter === "all") return true;
+    return p.type === activeFilter;
+  });
+
+  grid.innerHTML = filtered.map(p => `
+    <div class="project-card bg-[var(--surface)] rounded-xl overflow-hidden">
+
+      <img src="${p.image}" class="w-full h-56 object-cover">
+
+      <div class="p-6">
+
+        <h3 class="text-2xl mb-2">${p.title}</h3>
+
+        <p class="text-gray-400 text-sm mb-4">${p.desc}</p>
+
+        <div class="flex flex-wrap gap-2 mb-4">
+          ${p.tags.map(t => `
+            <span class="text-xs border px-2 py-1 rounded">${t}</span>
+          `).join("")}
+        </div>
+
+        <div class="flex gap-3">
+
+          <a href="${p.url}" target="_blank"
+            class="flex-1 text-center text-xs px-3 py-2 border rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition">
+            🔗 Live
+          </a>
+
+          <a href="${p.github}" target="_blank"
+            class="flex-1 text-center text-xs px-3 py-2 border rounded hover:border-[var(--accent)] hover:text-[var(--accent)] transition">
+            🧠 Code
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  `).join("");
+
+  lucide.createIcons();
+}
+
+document.getElementById("filter-all").onclick = () => {
+  activeFilter = "all";
+  renderProjects();
+};
+
+document.getElementById("filter-website").onclick = () => {
+  activeFilter = "website";
+  renderProjects();
+};
+
+document.getElementById("filter-app").onclick = () => {
+  activeFilter = "app";
+  renderProjects();
+};
+
+renderProjects();
+</script>
+
+</body>
 </html>

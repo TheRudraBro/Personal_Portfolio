@@ -30,7 +30,7 @@ const defaultConfig = {
     tags: ["JavaScript", "MongoDB", "Firebase"],
     year: "2026",
     url: "https://tourism-bangladesh.netlify.app/",
-    image: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?w=1200",
+    image: "https://i.ibb.co.com/FMWrhF6/Screenshot-2026-05-06-210424.png",
     type: "website"
   },
   {
@@ -40,7 +40,7 @@ const defaultConfig = {
     tags: ["JavaScript", "HTML", "TailwindCSS"],
     year: "2025",
     url: "https://english-vocabularies-learning-janala.netlify.app/",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200",
+    image: "https://i.ibb.co.com/zWcJthss/Screenshot-2026-05-06-211012.png",
     type: "website"
   },
   {
@@ -50,7 +50,7 @@ const defaultConfig = {
     tags: ["JavaScript", "HTML", "TailwindCSS"],
     year: "2025",
     url: "https://payooo-mobile-bank-project.netlify.app/",
-    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200",
+    image: "https://i.ibb.co.com/1JfKw563/Screenshot-2026-05-06-211437.png",
     type: "website"
   },
   {
@@ -60,7 +60,7 @@ const defaultConfig = {
     tags: ["JavaScript", "HTML", "TailwindCSS"],
     year: "2025",
     url: "https://emergency-services-bd.netlify.app/",
-    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    image: "https://i.ibb.co.com/hRWf75g0/Screenshot-2026-05-06-211333.png",
     type: "website"
   },
     {
@@ -70,17 +70,7 @@ const defaultConfig = {
     tags: ["JavaScript", "React native"],
     year: "2025",
     url: "https://emergency-services-bd.netlify.app/",
-    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
-    type: "app"
-  },
-  {
-    num: "06",
-    title: "Food Delivery - Mobile App (Under Development)",
-    desc: "A web application for tracking personal expenses and managing budgets effectively.",
-    tags: ["JavaScript", "React native"],
-    year: "2025",
-    url: "https://emergency-services-bd.netlify.app/",
-    image: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=1200",
+    image: "https://i.ibb.co.com/67MK6KM3/expensetracker.png",
     type: "app"
   }
 ];
