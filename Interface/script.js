@@ -72,6 +72,16 @@ const defaultConfig = {
     url: "https://emergency-services-bd.netlify.app/",
     image: "https://i.ibb.co.com/67MK6KM3/expensetracker.png",
     type: "app"
+  },
+   {
+    num: "06",
+    title: "Orbric Clothes - Website (Under Development)",
+    desc: "A web application for tracking personal expenses and managing budgets effectively.",
+    tags: ["JavaScript", "HTML"],
+    year: "2026",
+    url: "https://emergency-services-bd.netlify.app/",
+    image: "https://i.ibb.co.com/67MK6KM3/orbric.png",
+    type: "website"
   }
 ];
 
