@@ -80,7 +80,7 @@ const defaultConfig = {
     tags: ["JavaScript", "HTML"],
     year: "2026",
     url: "https://emergency-services-bd.netlify.app/",
-    image: "https://i.ibb.co.com/67MK6KM3/orbric.png",
+    image: "https://ibb.co.com/RTG3088f",
     type: "website"
   }
 ];
